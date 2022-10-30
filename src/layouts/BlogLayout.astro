@@ -1,0 +1,85 @@
+---
+import "@fontsource/work-sans";
+import Header from "@components/Header.astro";
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  ImageAlt?: string;
+}
+
+const canonicalURL = new URL(Astro.url).href;
+const { frontmatter } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <title>{frontmatter.title}</title>
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="title" content={frontmatter.title} />
+    <meta name="description" content={frontmatter.description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={frontmatter.title} />
+    <meta property="og:description" content={frontmatter.description} />
+    <meta property="og:image" content={frontmatter.image} />
+    <meta property="og:image:alt" content={frontmatter.imagealt} />
+    <meta property="og:site_name" content="Astro Basic Blog Template" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta name="twitter:site" content="@twitter" />
+    <meta name="twitter:creator" content="@twitter" />
+    <meta property="twitter:title" content={frontmatter.title} />
+    <meta property="twitter:description" content={frontmatter.description} />
+    <meta property="twitter:image" content={frontmatter.image} />
+    <meta name="generator" content={Astro.generator} />
+    <script is:inline>
+      // credits to satnaing on github
+      const primaryColorScheme = "none";
+      const darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const currentTheme = localStorage.getItem("theme");
+      let theme;
+      if (currentTheme) {
+        theme = currentTheme === "dark" ? "dark" : "";
+      } else {
+        if (primaryColorScheme === "dark" || (primaryColorScheme === "none" && darkModeMediaQuery)) {
+          theme = "dark";
+        } else if (primaryColorScheme === "light") {
+          theme = "";
+        } else {
+          theme = darkModeMediaQuery ? "dark" : "";
+        }
+      }
+      document.documentElement.className = theme;
+    </script>
+    <script>
+      const themeBtn = document.querySelector(".theme-toggle");
+      const htmlClassList = document.documentElement.classList;
+      themeBtn.addEventListener("click", function () {
+        if (htmlClassList.contains("dark")) {
+          localStorage.setItem("theme", "light");
+          htmlClassList.remove("dark");
+        } else {
+          localStorage.setItem("theme", "dark");
+          htmlClassList.add("dark");
+        }
+      });
+    </script>
+  </head>
+  <body class="font-worksans dark:bg-zinc-900 dark:text-white transition-colors scrollbar-thin scrollbar-thumb-zinc-400 scrollbar-track-zinc-300 dark:scrollbar-thumb-zinc-600 dark:scrollbar-track-zinc-800">
+    <main class="m-auto p-6 max-w-4xl">
+      <Header />
+      <section class="sm:prose-xl !prose-lg !p-3 mt-9 dark:text-zinc-200 dark:prose-a:text-blue-400 prose-a:text-blue-600 prose-img:rounded-lg">
+        <h1 class="text-4xl mt-4 font-semibold m-0">{frontmatter.title}</h1>
+        <h2 class="!text-[1.6rem] dark:text-zinc-300 my-4 mb-7">Written by {frontmatter.author} at {frontmatter.pubDate}</h2>
+        <slot />
+        <br><a href="/" class="dark:text-blue-400 text-blue-600">Go back to home</a>
+      </section>
+    </main>
+  </body>
+</html>

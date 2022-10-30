@@ -1,0 +1,20 @@
+---
+import Layout from "@layouts/Layout.astro";
+import BlogCard from "@components/BlogCard.astro";
+import { blogs } from "@content/blogs";
+---
+
+<Layout title="Astro Basic Blog Template" description="This is a blog template made with Astro and Tailwind. Made by Lance Ross">
+  <section>
+    <div class="grid place-items-center text-center py-20">
+      <h1 class="text-3xl mb-5 font-semibold">Welcome to my Astro Blog Template 🚀</h1>
+      <h2 class="text-xl">I got bored and decided to create an Astro template from scratch. Hope you like it!</h2>
+    </div>
+  </section>
+  <section>
+    <h1 class="text-3xl text-center font-semibold">Recent Posts 📝</h1>
+    <div class="flex flex-col sm:grid-cols-2 place-items-center py-14 gap-3 sm:grid">
+      {blogs.map((blog) => <BlogCard title={blog.title} description={blog.description} pubDate={blog.pubDate} url={blog.url} tags={blog.tags} />)}
+    </div>
+  </section>
+</Layout>

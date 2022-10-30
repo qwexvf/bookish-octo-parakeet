@@ -1,0 +1,33 @@
+---
+layout: "@layouts/BlogLayout.astro"
+title: How to create a blog with this template.
+description: Here is a guide how to create a blog with this template and deploy this to a static hosting!
+pubDate: 10/17/2022
+author: Lance Ross (with Copilot)
+image: "/images/og-how-to-deploy.jpeg"
+imagealt: OG Image - How to deploy
+---
+
+For this tutorial, I will show you how to create your own blog using this template and deploy it to the internet. I will be using [Vercel](https://vercel.com) as my static hosting because it is what I use for my projects. You can use any static hosting you want.
+
+![OG Image - How to deploy](../../images/og-how-to-deploy.jpeg)
+
+## 1. Clone this repository
+
+You can go to the [GitHub repository](https://github.com/lancerossdev/astro-basic-blog) of this template and click the "Use this template" button. You can also clone this repository using the command below:
+
+```bash
+git clone https://github.com/lancerossdev/astro-basic-blog.git
+```
+
+## 2. Install dependencies and create your content
+
+For that, you need to install the dependencies using `npm install` and open a dev server using the `npm run dev` and go to `http://localhost:3000` to your browser. After that, you can create your content using Markdown or MDX in the `src/pages/blog` folder and also update the `blogs.ts` file. You can also change the design `src/pages/index.astro` file to your liking.
+
+## 3. Deploy it to the internet
+
+After you create your content and pushed the code in your repository, you can deploy it to the internet. I will be using Vercel for this tutorial. You can deploy it to Vercel by logging in to your Vercel account and clicking the "New Project" button. Then, you can click the "Import Project" button and select the repository you created. After that, you can click the "Deploy" button and wait for it to finish. After that, you can click the "Visit" button to see your blog! It will looks something like this that shows the "Ready" on status after you deployed it.
+
+![Ready Status](../../images/ready-status.webp)
+
+And there you go, you just created your blog in Astro and also deployed it to the internet. Make sure to follow me on [Twitter](https://twitter.com/lancerossdev) for updates about me and [GitHub](https://github.com/lancerossdev) for my latest projects out there!
